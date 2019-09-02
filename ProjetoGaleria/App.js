@@ -1,10 +1,9 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
       <FlatList
         data={[{ key: "a" }, { key: "b" }]}
         renderItem={({ item }) => <Text>{item.key}</Text>}
