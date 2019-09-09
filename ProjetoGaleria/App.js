@@ -55,11 +55,14 @@ export default class App extends Component {
 
     return (
       <View style={styles.container}>
+        <View>
+          <Text style={styles.textView}>ESPAÇO PARA OS MENUS SUPERIORES</Text>
+        </View>
         <FlatList
           data={this.state.dataSource}
           ItemSeparatorComponent={this.FlatListItemSeparator}
           renderItem={({ item }) => (
-            <View style={{ flex: 1, flexDirection: "row" }}>
+            <View style={{ flex: 1,marginRight:3}}>
               <Image
                 source={{ uri: item.flower_image_url }}
                 style={styles.imageView}
@@ -67,7 +70,11 @@ export default class App extends Component {
             </View>
           )}
           keyExtractor={(item, index) => index.toString()}
+          numColumns={3}
         />
+        <View>
+          <Text style={styles.textView}>ESPAÇO PARA OS MENUS INFERIORES</Text>
+        </View>
       </View>
     );
   }
@@ -78,23 +85,30 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flex: 1,
     margin: 5,
-    marginTop: Platform.OS === "ios" ? 20 : 0
+    marginTop: Platform.OS === "ios" ? 20 : 0,
+    
   },
   container: {
-    flex: 1
+    justifyContent: 'center',
+    flex: 1,
+    paddingTop: 30,
   },
 
   imageView: {
-    width: "50%",
+    /*width: "50%",
+    height: 100,*/
+    justifyContent: 'center',
+    alignItems: 'center',
     height: 100,
-    margin: 7,
-    borderRadius: 7
+    width: "100%",
+    margin:3,
+    
   },
 
   textView: {
-    width: "50%",
-    textAlignVertical: "center",
-    padding: 10,
-    color: "#000"
+    width: "100%",
+    textAlign: "center",
+    color: "#000",
+    marginBottom:2
   }
 });
