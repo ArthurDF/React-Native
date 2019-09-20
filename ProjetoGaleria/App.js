@@ -18,7 +18,8 @@ export default class App extends Component {
     this.state = {
       isLoading: true,
       ModalVisible: false,
-      TempImageURL: "https://i.pinimg.com/originals/af/41/30/af4130615f3fe2228cce052130ab0280.jpg"
+      TempImageURL:
+        "https://i.pinimg.com/originals/af/41/30/af4130615f3fe2228cce052130ab0280.jpg"
     };
   }
   webCall = () => {
@@ -28,7 +29,7 @@ export default class App extends Component {
         this.setState(
           {
             isLoading: false,
-            dataSource: responseJson,
+            dataSource: responseJson
           }
           /*function() {
             // In this block you can do something with new state.
@@ -43,8 +44,7 @@ export default class App extends Component {
   componentDidMount() {
     this.webCall();
   }
-  _onPress(moda,imgUrl){
-    
+  _onPress(moda, imgUrl) {
     this.setState({
       ModalVisible: moda,
       TempImageURL: imgUrl
@@ -67,23 +67,29 @@ export default class App extends Component {
         <Modal
           transparent={false}
           visible={this.state.ModalVisible}
+          animationType="fade"
           onRequestClose={() => {
             Alert.alert("Modal has been closed.");
           }}
         >
-          <Image source={{ uri: this.state.TempImageURL }} style={{flex:1}} />
+          <TouchableOpacity onPress={()=>this._onPress(false,"")}>
+            <Text style={{ marginTop: 30 }}> Fechar Imagem </Text>
+          </TouchableOpacity>
+          <Image
+            source={{ uri: this.state.TempImageURL }}
+            style={{ flex: 1 }}
+          />
         </Modal>
 
-        <View>
-          <Text style={styles.textView}>ESPAÇO PARA OS MENUS SUPERIORES</Text>
-        </View>
+        <Text style={styles.textView}>ESPAÇO PARA OS MENUS SUPERIORES</Text>
+
         <FlatList
           data={this.state.dataSource}
           ItemSeparatorComponent={this.FlatListItemSeparator}
           renderItem={({ item }) => (
             <View style={{ flex: 1, marginRight: 3 }}>
               <TouchableOpacity
-                onPress={() => this._onPress(true,item.flower_image_url)}
+                onPress={() => this._onPress(true, item.flower_image_url)}
               >
                 <Image
                   source={{ uri: item.flower_image_url }}
